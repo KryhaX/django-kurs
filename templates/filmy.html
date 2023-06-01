@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'nowy.css' %}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .logout-button {
+            padding: 5px 10px;
+            background-color: #cc0000;
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        h3 {
+            color: white;
+            background-color: red;
+            padding: 10px;
+        }
+
+        a {
+            color: white;
+            background-color: #cc0000;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        a:hover {
+            background-color: #990000;
+        }
+
+        h2 {
+            color: #cc0000;
+            margin-top: 20px;
+        }
+
+        p {
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+<p></p>
+<a href="{% url 'wyloguj' %}" class="logout-button">Wyloguj</a>
+<h3>Dodaj Film: </h3>
+<a href="{% url 'nowy_film' %}">Dodaj Film</a>
+
+{% if film_z_rokiem|length == 0 %}
+    <h2>Brak Filmow</h2>
+{% elif film_z_rokiem|length >= 0 %}
+
+   <h2> Oto filmy mojej aplikacji </h2>
+    <h3>{{text}}</h3>
+
+<h3>Filmy z modelu:</h3>
+{% for film in film_z_rokiem %}
+    <h3>{{film}}</h3>
+    <p>{{film.opis}}</p>
+<a href="{% url 'edytuj_film' film.id %}">Edytuj</a>
+<a href="{% url 'usun_film' film.id %}">Usuń</a>
+{% endfor %}
+
+<h2>Ilosc filmow w bazie danych: {{ film_z_rokiem|length}}</h2>
+
+{% endif %}
+
+</body>
+</html>
