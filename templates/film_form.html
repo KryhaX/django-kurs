@@ -1,101 +1,15 @@
-<!doctype html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tworzenie nowego filmu</title>
-    <style>
-        body {
-            background-color: #333333;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-        }
-        
-        form {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        input[type="text"],
-        input[type="file"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #cccccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-        
-        button[type="submit"] {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #cc0000;
-            border: none;
-            color: #ffffff;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 3px;
-        }
-        
-        a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #999999;
-            border: none;
-            color: #ffffff;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 3px;
-            margin-left: 10px;
-        }
-                button[type="submit"] {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #cc0000;
-            border: none;
-            color: #ffffff;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 3px;
-        }
-        h1 {
-            position: relative;
-            left: 40%;
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #cc0000;
-            border: none;
-            color: #ffffff;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 3px;
 
-        }
-        .opis-field {
-            width: 100%;
-            height: 150px;
-            padding: 10px;
-            border: 1px solid #cccccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-            resize: vertical;
-}
-    </style>
-</head>
-<body>
+{% extends 'glowny.html' %}
+{% load bootstrap %}
+{% block tytul %}Film Form{% endblock %}
+
+{% block strona %}
+
 <h1>Dodaj film</h1>
     <form method="POST" enctype="multipart/form-data">
-        {{ form }}
+        {{ form|bootstrap }}
         {% csrf_token %}
         <button type="submit" >Dodaj film</button>
         <a href="{% url 'wszystkie_filmy'%}">Cofnij</a>
     </form>
-</body>
-</html>
+{% endblock %}
